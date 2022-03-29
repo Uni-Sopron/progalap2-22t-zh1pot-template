@@ -5,18 +5,16 @@
 A feladat egy gépjármű üzemanyagfogyasztásának elemzését segítő osztályok elkészítése a [fuelstats.py](fuelstats.py) fájlban.
 
 A fogyasztási adatok `Trip` objektumokban legyenek tárolva:
-- Konstruktorban kerül megadásra a megtett út hossza km-ben és az üzemanyagfogyasztás literben.
+- Konstruktorban várja a megtett út hosszát km-ben és az üzemanyagfogyasztást literben.
 - Legyen egy `lit_per_100k()` metódusa, ami kiszámolja és visszaadja, hogy ez 100 km-en hány liter fogyasztással egyenértékű.
-- Az adatok könnyebb rendezésének érdekében legyen összehasonlítás operátora, ami a megtett út alapján hasonlít össze két objektumot.
+- Az adatok könnyebb rendezésének érdekében legyen összehasonlítás operátora (<), ami a megtett út alapján hasonlít össze két objektumot.
 
 A `FuelStats` osztály feladata a `Trip` objektumok kezelése:
 - A konstruktorának megadott pickle fájlból tudja betölteni egy korábban exportált `FuelStats` objektum adatait.
 - Ha a megadott fájl nem létezik, akkor üresen legyen inicializálva az objektum.
 - Az `add(Trip)` metódussal lehessen új fogyasztási adatot hozzáadni.
 - A `save()` metódus végezze az adatok exportálását a konstruktorban megadott fájl elérési útra.
-
-- Az `average()` és a `median()` metódusok adják vissza az átlagos fogyasztást, illetve a `Trip` objektumok közül a mediánnak a fogyasztását, l/100km-ben.
-  - A medián a fogyasztás szerinti rendezés utáni középső elem értéke, vagy páros darabszám esetén a két középső érték számtani közepe.
+- Az `average()` metódus adja vissza az átlagos fogyasztást, l/100km-ben. (Ez nem egyenlő az utazások fogyasztásainak átlagával, hanem a megtett távolságok összegéből és az összes elfogyasztott üzemanyagból számítandó ki.)
 
 A `create_chart()` metódus az alább leírt módon készítsen grafikont az utazásokból, és azt mentse el egy fájlba:
 
@@ -27,7 +25,7 @@ A `create_chart()` metódus az alább leírt módon készítsen grafikont az uta
 
 - A grafikon X tengelye az utazások hossza, az Y tengelye a fogyasztás literben, ezek legyenek is kiírva a tengelyekre, valamint a grafikon tetején legyen egy cím.
   - Az egyes utazások értékei pontokként legyenek ábrázolva, és az átlagfogyasztás pedig egy egyenes, szaggatott vonalként kerüljön feltüntetésre.
-  - Tipp: A vonal y-koordinátáit minden x értékre ki kell számítani. Vagyis hogy átlagos fogyasztást feltételezve mennyi lenne a fogyasztás az egyes távolságokra.
+  - Segítség: A vonal ábrázolásához annak y-koordinátáit legalább 2 különböző x értékre ki kell számítani. Vagyis hogy átlagos fogyasztást feltételezve mennyi lenne a fogyasztás ezekre a távolságokra.
 - Példa kimenet a megadott tesztadatokra:
 
 ![expected/0.png](expected/0.png)
